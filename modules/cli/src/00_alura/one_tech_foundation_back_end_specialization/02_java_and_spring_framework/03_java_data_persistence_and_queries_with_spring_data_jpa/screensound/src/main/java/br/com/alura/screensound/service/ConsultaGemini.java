@@ -1,22 +1,21 @@
 package br.com.alura.screensound.service;
 
-import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.service.OpenAiService;
+import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 
-public class ConsultaChatGPT {
+public class ConsultaGemini {
 
-    public static String obterInformacao(String texto){
-        OpenAiService service = new OpenAiService(System.getenv("OPENAI_APIKEY"));
+    public static String obterInformacao(String texto) {
 
-        CompletionRequest requisicao = CompletionRequest.builder()
-                .model("text-davinci-003")
-                .prompt("me fale sobre o artista: " + texto)
-                .maxTokens(1000)
+        GoogleAiGeminiChatModel model = GoogleAiGeminiChatModel.builder()
+                .apiKey(System.getenv("GOOGLE_API_KEY"))
+                .modelName("gemini-1.5-flash")
                 .temperature(0.7)
                 .build();
 
+        String prompt = "Me fale sobre o artista: " + texto;
 
-        var resposta = service.createCompletion(requisicao);
-        return resposta.getChoices().get(0).getText();
+        String resposta = model.chat(prompt);
+
+        return resposta;
     }
 }

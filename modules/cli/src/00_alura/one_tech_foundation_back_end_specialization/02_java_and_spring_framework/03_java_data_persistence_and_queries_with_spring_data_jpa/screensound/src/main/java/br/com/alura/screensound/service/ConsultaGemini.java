@@ -6,9 +6,11 @@ public class ConsultaGemini {
 
     public static String obterInformacao(String texto) {
 
+        String apiKey = System.getProperty("GEMINI_API_KEY");
+
         GoogleAiGeminiChatModel model = GoogleAiGeminiChatModel.builder()
-                .apiKey(System.getenv("GOOGLE_API_KEY"))
-                .modelName("gemini-1.5-flash")
+                .apiKey(apiKey)
+                .modelName("gemini-2.5-flash")
                 .temperature(0.7)
                 .build();
 

@@ -2,6 +2,7 @@ package br.com.alura.screensound;
 
 import br.com.alura.screensound.principal.Principal;
 import br.com.alura.screensound.repository.ArtistaRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,11 @@ public class ScreensoundApplication implements CommandLineRunner {
 	private ArtistaRepository repositorio;
 
 	public static void main(String[] args) {
+
+		Dotenv dotenv = Dotenv.load();
+
+		dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
+
 		SpringApplication.run(ScreensoundApplication.class, args);
 	}
 

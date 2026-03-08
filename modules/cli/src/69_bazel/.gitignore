@@ -1,0 +1,11 @@
+# Bazel symlinks created in the workspace root
+bazel-*
+
+# Bazel build output directories
+bazel-bin/
+bazel-out/
+bazel-testlogs/
+
+# Bazel local cache and user-specific configuration
+.bazel
+.bazelrc.user
